@@ -42,7 +42,7 @@ def sensitive_word_recognize( database, table, columns, data, index, size): #dat
 def check_secret(pattern, value):
     return pattern.findall(value)
 
-'''
+
 def check_id(value):
     if re.match(id_pattern, value):
         return (value + ' 身份证 %s' % s4)
@@ -73,7 +73,7 @@ def check_bank_card(value):
         return (value + ' 银行卡 %s' % s3)
     else :
         return (value + ' 8 %s' % s1)
-'''
+
 def check_chinese_address_and_name(value):
     seg_text = CRFnewSegment.seg(value)
 
@@ -135,22 +135,6 @@ def auto_check_secret(value):
     else: 
         return ('8 %s' % s1) # 无风险
 
-# def auto_check_secret(value):
-#     email_list,bank_card_list,phone_list,mobile_phone_list,id_list,address_list,name_list = sentence_match(value)
-#     result_list = []
-#     for email in email_list :
-#         result_list.append(email + ' 邮箱 %s' % s3)
-#     for bank_card in bank_card_list :
-#         result_list.append(bank_card + ' 银行卡 %s' % s3)
-#     for phone in phone_list :
-#         result_list.append(phone + ' 固话 %s' % s3)
-#     for mobile_phone in mobile_phone_list :
-#         result_list.append(mobile_phone + ' 手机 %s' % s4)
-#     for id in id_list :
-#         result_list.append(id + ' 身份证 %s' % s4)
-#     for address_list in address_list :
-        result_list
-
 
 
 def NameRecognize(sentence): #中国人名识别
@@ -168,13 +152,6 @@ def sentence_match(sentence):
     email = check_secret(email_pattern, sentence) #邮箱
 
     phone = check_secret(phone_pattern, sentence) #固话
-
-    # id = check_secret(id_pattern, sentence) #身份证
-
-    # mobile_phone = check_secret(moblie_phone_pattern, sentence) #手机
-
-    # bank_card = check_secret(bank_card_pattern, sentence) #银行卡
-
 
     #英文：nx
 
@@ -196,7 +173,7 @@ def sentence_match(sentence):
             name_list.append(key)
 
         if re.search(r'm', value): #值为数字
-            if re.match(id_pattern, value):
+            if re.match(id_pattern, value): #身份证
                 id.append(key)
             elif re.match(bank_card_pattern,key): #银行卡  
                 bank_card.append(key)

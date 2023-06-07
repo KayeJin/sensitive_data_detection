@@ -20,7 +20,7 @@ import match
 import db_class
 
     
-     
+
 if __name__ == '__main__':
         
     process_num = int(input('线程数： '))
